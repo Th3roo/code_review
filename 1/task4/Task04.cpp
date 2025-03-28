@@ -30,7 +30,7 @@ int term(string str)
 			pos = i;
 			break;
 		}
-		i--;
+		i--; // постфикс низя
 	}
 	if (pos == -1)
 		return element(str);
