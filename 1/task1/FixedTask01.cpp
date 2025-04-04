@@ -26,12 +26,9 @@ void KnapsackSolver(int weight_threshold, const vector<int>& weights, const vect
     vector<vector<bool>> selected_items_for_weight(total_possible_weight + 1, vector<bool>(item_count, false));
 
     for (int i = 0; i < item_count; i++) {
-        for (int current_weight = total_possible_weight; current_weight >= weights[i]; current_weight--)
-        { 
+        for (int current_weight = total_possible_weight; current_weight >= weights[i]; current_weight--) { 
             int weight_before_adding_item = current_weight - weights[i];
-            if (min_tax_for_weight[weight_before_adding_item] != INT_MAX &&
-                min_tax_for_weight[weight_before_adding_item] + tax_burdens[i] < min_tax_for_weight[current_weight])
-            {
+            if (min_tax_for_weight[weight_before_adding_item] != INT_MAX && min_tax_for_weight[weight_before_adding_item] + tax_burdens[i] < min_tax_for_weight[current_weight]) {
                 min_tax_for_weight[current_weight] = min_tax_for_weight[weight_before_adding_item] + tax_burdens[i];
                 selected_items_for_weight[current_weight] = selected_items_for_weight[weight_before_adding_item];
                 selected_items_for_weight[current_weight][i] = true;
@@ -54,17 +51,13 @@ void KnapsackSolver(int weight_threshold, const vector<int>& weights, const vect
     }
 
     // Вывод результата
-    if (min_total_tax_found == INT_MAX) // Если решение не найдено
-    { 
+    if (min_total_tax_found == INT_MAX) { // Если решение не найдено  
         cout << "Невозможно достичь минимального веса " << weight_threshold << endl;
     }
-    else// Если решение найдено
-    { 
+    else { // Если решение найдено
         cout << "Порядковые номера выбранных предметов: ";
-        for (int i = 0; i < item_count; i++) 
-        {
-            if (selection_for_min_tax[i]) 
-            {
+        for (int i = 0; i < item_count; i++) { 
+            if (selection_for_min_tax[i])  {
                 cout << i + 1 << " ";
             }
         }
