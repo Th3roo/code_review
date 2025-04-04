@@ -42,8 +42,7 @@ void KnapsackSolver(int weight_threshold, const vector<int>& weights, const vect
 
     //FIX ME фигурные скобки
     for (int current_weight = weight_threshold; current_weight <= total_possible_weight; current_weight++) { 
-        if (min_tax_for_weight[current_weight] < min_total_tax_found)
-        { 
+        if (min_tax_for_weight[current_weight] < min_total_tax_found) { 
             min_total_tax_found = min_tax_for_weight[current_weight];
             weight_for_min_tax = current_weight;
             selection_for_min_tax = selected_items_for_weight[current_weight];
