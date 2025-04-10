@@ -44,16 +44,21 @@ int main() {
 	cout << "Начальное состояние:" << endl;
 
 	cout << "Адрес начала: " << myQueue.front << ", Адрес конца: " << myQueue.rear << endl;
-	if (myQueue.front) cout << "Значение начала: " << myQueue.front->data << endl;
-	if (myQueue.rear) cout << "Значение конца: " << myQueue.rear->data << endl;
 
+	if (myQueue.front) {
+        cout << "Значение начала: " << myQueue.front->data << endl;
+    };
 
-	// Dequeue five elements as per the task description
+    if (myQueue.rear) {
+        cout << "Значение конца: " << myQueue.rear->data << endl;
+    };
+
 	cout << "Извлечение пяти начальных элементов:" << endl;
 	cout << "Извлеченные элементы: ";
 
 	int dequeuedValue = 0;
 	int successfulDequeues = 0;
+    
 	for (int i = 0; i < 5; ++i) {
 		if (Dequeue(myQueue, dequeuedValue)) {
 			cout << dequeuedValue << " ";
@@ -69,9 +74,8 @@ int main() {
 		cout << "Не удалось извлечь 5 элементов, так как очередь закончилась." << endl;
 	}
 
-
-	
 	cout << "Итоговое состояние очереди:" << endl;
+    
 	if (myQueue.front != nullptr) {
 		cout << "Адрес начала очереди: " << myQueue.front << ", Значение: " << myQueue.front->data << endl;
 	} else {
