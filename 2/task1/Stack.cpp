@@ -3,7 +3,7 @@
 
 Node::Node(int data) : data(data), next_node(nullptr) {}
 
-Stack::Stack() : top_node_(nullptr) {}
+Stack::Stack() : top_node(nullptr) {}
 
 void Stack::Push(int data) {
     Node* new_node = new Node(data);
@@ -12,7 +12,7 @@ void Stack::Push(int data) {
 }
 
 void Stack::Show() const {
-    Node* current_node = top_node_;
+    Node* current_node = top_node;
     while (current_node != nullptr) {
         std::cout << current_node->data << " ";
         current_node = current_node->next_node;
@@ -21,16 +21,16 @@ void Stack::Show() const {
 }
 
 void Stack::ShowAddress() const {
-    std::cout << "Адрес вершины стека: " << top_node_ << std::endl;
+    std::cout << "Адрес вершины стека: " << top_node << std::endl;
 }
 
 int Stack::GetTopValue() const {
-    if (top_node_ != nullptr) {
-        return top_node_->data;
+    if (top_node != nullptr) {
+        return top_node->data;
     }
     return 1;
 }
 
 bool Stack::IsEmpty() const {
-    return top_node_ == nullptr;
+    return top_node == nullptr;
 }
