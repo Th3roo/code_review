@@ -16,8 +16,7 @@
 #include <iterator>
 using namespace std;
 
-void FuncInsert(deque<int>& D) 
-{
+void FuncInsert(deque<int>& D) {
     size_t N = D.size();
 
     // Вычисляем индекс среднего элемента
@@ -34,8 +33,7 @@ void FuncInsert(deque<int>& D)
     D.insert(D.begin(), MiddleElements.begin(), MiddleElements.end());
 }
 
-deque<int> FuncKeyboard() 
-{
+deque<int> FuncKeyboard() {
     int count;
     cout << "Введите количество целых чисел (нечетное и >= 5): ";
     cin >> count;
@@ -58,8 +56,7 @@ deque<int> FuncKeyboard()
     return D;
 }
 
-deque<int> FuncRandom(int count) 
-{
+deque<int> FuncRandom(int count) {
     deque<int> D;
     srand(static_cast<unsigned>(time(0)));
 
@@ -71,8 +68,7 @@ deque<int> FuncRandom(int count)
     return D;
 }
 
-deque<int> FuncFile() 
-{
+deque<int> FuncFile() {
     deque<int> D;
     ifstream infile("a.txt");
     int number;
@@ -95,8 +91,7 @@ deque<int> FuncFile()
     return D;
 }
 
-int main() 
-{
+int main() {
     setlocale(LC_ALL, "ru");
     int choice;
     cout << "Выберите метод ввода данных: 1.Ввод с клавиатуры  2.Случайные числа  3.Чтение из файла" << endl;

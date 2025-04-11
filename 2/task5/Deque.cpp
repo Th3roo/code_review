@@ -2,8 +2,7 @@
 #include <vector>
 #include <iterator> // std::begin, std::end
 
-void FuncInsert(std::deque<int>& targetDeque)
-{
+void FuncInsert(std::deque<int>& targetDeque) {
 	size_t dequeSize = targetDeque.size();
 
 	if (dequeSize < 5 || dequeSize % 2 == 0) {

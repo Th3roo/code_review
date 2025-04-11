@@ -24,8 +24,7 @@
 
 using namespace std; 
 
-int main()
-{
+int main() {
 	setlocale(LC_ALL, "ru");
 	srand(static_cast<unsigned>(time(0))); 
 
@@ -45,13 +44,11 @@ int main()
 	deque<int> dataDeque;
 	bool inputSuccess = false;
 
-	switch (inputMethodChoice)
-	{
+	switch (inputMethodChoice) {
 		case 1:
 			inputSuccess = FuncKeyboard(dataDeque);
 			break;
-		case 2:
-		{
+		case 2: {
 			int randomElementCount;
 			cout << "Введите количество чисел (нечетное и >= 5): ";
 			// Keep the loop for getting a valid count *before* calling FuncRandom
@@ -64,8 +61,7 @@ int main()
 			inputSuccess = FuncRandom(dataDeque, randomElementCount);
 			break;
 		}
-		case 3:
-		{
+		case 3: {
 			inputSuccess = FuncFile(dataDeque); // a.txt
 			break;
 		}
@@ -77,8 +73,7 @@ int main()
 	}
 
 	cout << "Исходный дек: ";
-	for (const auto& element : dataDeque)
-	{
+	for (const auto& element : dataDeque){
 		cout << element << " ";
 	}
 	cout << endl;
@@ -91,8 +86,7 @@ int main()
 
 	FuncInsert(dataDeque);
 	cout << "Дек после вставки: ";
-	for (const auto& element : dataDeque)
-	{
+	for (const auto& element : dataDeque) {
 		cout << element << " ";
 	}
 	cout << endl;
