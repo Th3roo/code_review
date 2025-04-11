@@ -1,13 +1,11 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-// Structure for a queue node
 struct QueueNode {
 	int data;
 	QueueNode* nextNode;
 };
 
-// Structure for the queue itself
 struct Queue {
 	QueueNode* front; // Head
 	QueueNode* rear;  // Tail

@@ -60,19 +60,7 @@ void LinkedList::clearList() {
 		head = head->next;          // Move head to the next node
 		delete nodeToDelete;                // Delete the old head node
 	}
-	// Optional: Indicate cleanup, though usually not done within the method itself
-	// cout << "Список очищен." << endl; 
 }
-// TODO Move to private
-// --- Friend Function Implementation ---
-// This function now acts as a wrapper or interface to the class method.
-// It needs access to the private 'head' if it were to implement the logic itself,
-// but here it just calls the public member function.
 void insertBeforeEverySecond(LinkedList& list, int insertionValue) {
-	// It could directly call the public method
 	list.insertBeforeEverySecond(insertionValue); 
-	
-	// Or, if it needed direct access to private members (which it doesn't here):
-	// Node* current = list.head; 
-	// ... implementation ...
 }

@@ -15,8 +15,8 @@
 
 #include <iostream>
 #include "Stack.h"
-#include <locale.h> // Required for setlocale
-#include <limits>   // Required for numeric_limits
+#include <locale.h> // setlocale
+#include <limits>   // numeric_limits
 
 using namespace std;
 

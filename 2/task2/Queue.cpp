@@ -1,5 +1,5 @@
 #include "Queue.h"
-#include <iostream> // Needed for std::cerr
+#include <iostream> // std::cerr
 
 // Function to add an element to the queue
 void Enqueue(Queue& queue, int value) {
