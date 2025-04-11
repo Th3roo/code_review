@@ -62,7 +62,7 @@ int main() {
 	for (int i = 0; i < 5; ++i) {
 		if (Dequeue(myQueue, dequeuedValue)) {
 			cout << dequeuedValue << " ";
-			successfulDequeues++;
+			++successfulDequeues;
 		} else {
 			cout << "\nОчередь стала пустой во время извлечения.";
 			break;
