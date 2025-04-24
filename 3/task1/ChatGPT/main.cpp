@@ -25,3 +25,7 @@ int main() {
 
         return 0;
 }
+
+/* g++ -std=c++17 -Wall -Wextra -pedantic main.cpp WordShuffler.cpp -o shuffle_word
+./shuffle_word
+*/
