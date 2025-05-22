@@ -1,7 +1,7 @@
 ---
 description: 
 globs: 
-alwaysApply: true
+alwaysApply: false
 ---
 Тебе необходимо при написании кода на cpp придерживаться следующих правил
 
