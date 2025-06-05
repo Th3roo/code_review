@@ -29,7 +29,6 @@ def task_1_countries_and_cities():
                 continue
             country = line[0]
             cities = line[1:]
-            # Дополнительная проверка, что города не пустые строки (если они были введены с множественными пробелами)
             valid_cities = [city for city in cities if city]
             if not valid_cities:
                 print(f"Некорректный ввод для страны {i + 1}. "
@@ -39,7 +38,7 @@ def task_1_countries_and_cities():
                 country_city_map[city] = country
             break
 
-    if k > 0:  # Только если были введены страны, запрашиваем города для поиска
+    if k > 0:
         print("\nВведите 3 города для поиска:")
         for i in range(3):
             while True:
@@ -58,5 +57,5 @@ def task_1_countries_and_cities():
 
 if __name__ == '__main__':
     print("--- Задача 1: Страны и города ---"
-          )  # Оставим для ясности запуска конкретного файла
+          )
     task_1_countries_and_cities()

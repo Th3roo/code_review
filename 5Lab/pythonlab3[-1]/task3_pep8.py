@@ -31,7 +31,6 @@ def get_sergeys_guess(max_n):
                 print("Вы не ввели числа для угадывания.")
                 continue
 
-            # Validate if all guessed numbers are within the allowed range
             valid_range = True
             for num in guessed_numbers_set:
                 if not (1 <= num <= max_n):
@@ -71,11 +70,9 @@ def play_guess_the_number():
         if sergeys_numbers == "помогите!":
             break
 
-        # This check is technically not needed if get_sergeys_guess always returns a set or "помогите!"
-        # However, as a safeguard or if the function changes, it can be useful.
         if not isinstance(sergeys_numbers, set) or not sergeys_numbers:
             print("Произошла ошибка с вводом чисел Сергея, попробуйте снова."
-                  )  # Should not happen with current get_sergeys_guess
+                  )
             continue
 
         ivan_response = get_ivan_answer()
@@ -87,8 +84,6 @@ def play_guess_the_number():
 
         if not possible_numbers:
             print("Кажется, Иван ошибся в ответах, или такого числа нет.")
-            # Game could end here, or let user type "Помогите!" to see empty set
-            # For now, let it continue until "Помогите!"
 
     if possible_numbers:
         print("\nИван мог загадать следующие числа:",

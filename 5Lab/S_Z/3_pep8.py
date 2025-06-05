@@ -27,10 +27,9 @@ def task_3_guess_the_number():
 
         try:
             sergey_guesses = set(map(int, guess_input_str.split()))
-            if not sergey_guesses:  # Should be caught by "if not guess_input_str" mostly, but good for safety
+            if not sergey_guesses:
                 print("Вы не ввели числа для угадывания.")
                 continue
-                # Проверка, что все числа Сергея в допустимом диапазоне
             if not all(1 <= num <= n_max for num in sergey_guesses):
                 print(f"Числа должны быть в диапазоне от 1 до {n_max}.")
                 continue
@@ -40,7 +39,7 @@ def task_3_guess_the_number():
             )
             continue
 
-        while True:  # Loop for Ivan's answer
+        while True:
             ivan_answer = input("Ответ Ивана ('Да'/'Нет'): ").strip().lower()
             if ivan_answer in ["да", "нет"]:
                 break
@@ -49,17 +48,12 @@ def task_3_guess_the_number():
 
         if ivan_answer == "да":
             possible_numbers.intersection_update(sergey_guesses)
-        elif ivan_answer == "нет":  # 'нет'
+        elif ivan_answer == "нет":
             possible_numbers.difference_update(sergey_guesses)
 
         if not possible_numbers:
             print("Иван, кажется, ты ошибся в своих ответах, "
                   "или такого числа не существует среди возможных.")
-            # No return here, the loop will break on next "Помогите!" or user can try again
-            # If loop continues and Помогите! is called, it will print the empty set correctly.
-            # Or, we can decide to terminate if no possible numbers left.
-            # For now, let's allow "Помогите!" to show the empty set.
-            # If the user gives more inputs that make the set non-empty, it can continue.
 
     if possible_numbers:
         print("Иван мог загадать следующие числа:",

@@ -1,14 +1,7 @@
 import os
 
-# Corrected file paths to be relative to the script's directory
 RUSSIAN_FILE_PATH = "russian_words.txt"
 ENGLISH_FILE_PATH = "english_words.txt"
-# For a file located in 5Lab/pythonlab3[-1], the above paths will look for
-# files in the same directory. If the files are in `5Lab/pythonlab3[-1]`,
-# and the script is run from `5Lab`, then the path needs to be:
-# RUSSIAN_FILE_PATH = "pythonlab3[-1]/russian_words.txt"
-# ENGLISH_FILE_PATH = "pythonlab3[-1]/english_words.txt"
-# Assuming the files are in the same directory as the script for now.
 
 
 def load_word_pairs(rus_path, eng_path):
@@ -25,8 +18,6 @@ def load_word_pairs(rus_path, eng_path):
         print(
             "Убедитесь, что файлы находятся в том же каталоге, что и скрипт, или укажите правильный путь."
         )
-        # Check if demo files were intended to be created like in S_Z/5.py
-        # For now, just error out.
         return None
     except IOError as e:
         print(f"Ошибка чтения файлов: {e}")

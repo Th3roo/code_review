@@ -31,15 +31,11 @@ def input_countries_data():
 
             country = data[0]
             cities = data[1:]
-            # Ensure no city is an empty string if multiple spaces were used
             valid_cities = [city for city in cities if city]
             if not valid_cities:
                 print("Не указаны города для страны.")
                 continue
 
-            # If country already exists, this will overwrite.
-            # To add cities to existing country, logic would need to change.
-            # For this task, assuming each country entry is unique or overwriting is fine.
             countries_map[country] = valid_cities
             break
     return countries_map

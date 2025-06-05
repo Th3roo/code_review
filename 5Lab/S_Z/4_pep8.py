@@ -1,21 +1,17 @@
-# Recursive function to determine the height of a person with memoization
 def get_height_recursive(person, parent_map, heights_cache):
     if person not in heights_cache:
-        if person not in parent_map:  # This person is a root
+        if person not in parent_map:
             heights_cache[person] = 0
         else:
             parent = parent_map[person]
-            # Check for simple cycle before recursion to prevent RecursionError
-            # This is a basic check; more complex cycle detection might be needed for arbitrary graphs
             if parent in heights_cache and heights_cache[
-                    parent] == -1:  # -1 indicates "currently visiting"
+                    parent] == -1:
                 raise ValueError(
                     f"Обнаружен цикл, включающий {person} и {parent}")
-            heights_cache[person] = -1  # Mark as visiting
+            heights_cache[person] = -1
             heights_cache[person] = get_height_recursive(
                 parent, parent_map, heights_cache) + 1
-    elif heights_cache[
-            person] == -1:  # Should be caught by the check above, but as a safeguard
+    elif heights_cache[person] == -1:
         raise ValueError(
             f"Обнаружен цикл при попытке получить высоту для {person}")
     return heights_cache[person]
@@ -27,7 +23,7 @@ def task_4_family_tree_heights():
             n_people = int(input("Введите количество человек: "))
             if n_people > 0:
                 break
-            else:  # n_people == 0 or n_people < 0
+            else:
                 print(
                     "Количество человек должно быть положительным целым числом."
                 )
@@ -51,11 +47,9 @@ def task_4_family_tree_heights():
         return
 
     print("Введите N-1 пару связей (формат: имя_потомка имя_родителя):")
-    # Ensure we collect exactly n_people - 1 valid pairs
     collected_pairs = 0
     attempted_pairs = 0
-    max_attempts = (n_people -
-                    1) * 2  # Allow some leeway for errors but not infinite
+    max_attempts = (n_people - 1 ) * 2
 
     while collected_pairs < n_people - 1 and attempted_pairs < max_attempts:
         attempted_pairs += 1
@@ -82,10 +76,6 @@ def task_4_family_tree_heights():
             print(
                 f"Ошибка: у потомка {child} уже указан родитель {parent_map[child]}. "
                 f"Повторная связь ({child} {parent}) не будет добавлена.")
-            # Not necessarily an error that stops collection, but this specific pair is skipped.
-            # If we need exactly N-1 unique child-parent links, this logic might need adjustment
-            # or we assume the user provides N-1 *valid* and *unique child* links.
-            # For now, we just skip this redundant/conflicting pair.
             continue
 
         parent_map[child] = parent
@@ -97,33 +87,22 @@ def task_4_family_tree_heights():
         print(
             f"Было введено только {collected_pairs} корректных пар из необходимых {n_people -1}. Расчет высот может быть неполным или неверным."
         )
-        # Decide if to proceed or return
-        if not parent_map and n_people > 1:  # No valid pairs at all
+        if not parent_map and n_people > 1:
             print("Не удалось установить ни одной связи. Завершение.")
             return
 
-    # Determine roots (people who are not children in any pair)
-    # This also implies they must be in all_people if they are part of any relationship
     children_with_parents = set(parent_map.keys())
 
-    # Potential roots are those in all_people but not in children_with_parents
-    # If a person was only mentioned as a parent, they are a root.
-    # If n_people = 1, all_people contains that one person, children_with_parents is empty.
     roots = all_people - children_with_parents
 
-    if not all_people and n_people > 1:  # Should be caught by collected_pairs check earlier
+    if not all_people and n_people > 1:
         print("Нет данных о людях для построения дерева.")
         return
 
-    if not roots and all_people:  # No person is without a recorded parent, implies a cycle or incomplete data
+    if not roots and all_people:
         print("Ошибка в структуре дерева: нет явного родоначальника. "
               "Это может указывать на цикл во всех введенных связях.")
         return
-
-    # The problem implies a single connected tree, so there should be one root.
-    # However, the input N-1 pairs might not guarantee this if user input is arbitrary.
-    # For now, we proceed if there's at least one root and calculate heights.
-    # A strict interpretation might require exactly one root.
 
     heights = {}
     calculation_errors = False
@@ -131,15 +110,14 @@ def task_4_family_tree_heights():
 
     for person in sorted_all_people:
         try:
-            # Ensure all potential roots are initialized if not in parent_map
             if person in roots and person not in heights:
                 heights[
-                    person] = 0  # Explicitly set root height before potential recursion
+                    person] = 0
 
             get_height_recursive(person, parent_map, heights)
-        except ValueError as e:  # Catches cycles from get_height_recursive
+        except ValueError as e:
             print(f"Ошибка при расчете высоты для {person}: {e}")
-            heights[person] = "Ошибка (цикл)"  # Mark as error
+            heights[person] = "Ошибка (цикл)"
             calculation_errors = True
         except RecursionError:
             print(
@@ -154,20 +132,16 @@ def task_4_family_tree_heights():
         )
         return
 
-    if not all_people and n_people > 1:  # Should have been caught earlier
+    if not all_people and n_people > 1:
         print("Нет данных о людях для вывода высот.")
         return
 
     print("\n“Высота” каждого члена семьи:")
-    for person_name in sorted_all_people:  # Iterate over all known people
+    for person_name in sorted_all_people:
         height_val = heights.get(person_name)
         if height_val is not None:
             print(f"{person_name} {height_val}")
         else:
-            # This case might happen if a person was in all_people but never processed
-            # due to not being a key in parent_map and not being a detected root (e.g. isolated person)
-            # or if get_height_recursive was not called for them for some reason.
-            # For a valid tree from N-1 pairs for N people, all should be covered.
             print(
                 f"{person_name} (высота не рассчитана, возможно изолирован или ошибка структуры)"
             )

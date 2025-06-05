@@ -5,8 +5,6 @@ ENGLISH_FILE_NAME = "english_translations.txt"
 
 
 def create_demo_files_if_not_exist():
-    # Creates demo vocabulary files if they don't exist.
-    # Returns True if files are ready or created, False on creation error.
     if not os.path.exists(RUSSIAN_FILE_NAME) or \
        not os.path.exists(ENGLISH_FILE_NAME):
         print(f"Файл(ы) '{RUSSIAN_FILE_NAME}' и/или "
@@ -30,8 +28,6 @@ def create_demo_files_if_not_exist():
 
 
 def load_vocabulary():
-    # Loads words from vocabulary files.
-    # Returns (russian_words, english_translations) or (None, None) on error.
     try:
         with open(RUSSIAN_FILE_NAME, "r", encoding="utf-8") as f_rus, \
              open(ENGLISH_FILE_NAME, "r", encoding="utf-8") as f_eng:
@@ -41,8 +37,6 @@ def load_vocabulary():
             ]
         return russian_words, english_translations
     except FileNotFoundError:
-        # This case should ideally be handled by create_demo_files_if_not_exist
-        # but kept as a safeguard.
         print(f"Не удалось открыть файлы '{RUSSIAN_FILE_NAME}' или "
               f"'{ENGLISH_FILE_NAME}'.")
         return None, None
@@ -52,9 +46,7 @@ def load_vocabulary():
 
 
 def validate_vocabulary(russian_words, english_translations):
-    # Validates loaded vocabulary. Returns True if valid, False otherwise.
     if russian_words is None or english_translations is None:
-        # Error already printed by load_vocabulary
         return False
 
     if not russian_words or not english_translations:
@@ -71,7 +63,6 @@ def validate_vocabulary(russian_words, english_translations):
 
 
 def run_test(russian_words, english_translations):
-    # Conducts the vocabulary test.
     correct_answers_count = 0
     total_questions_count = len(russian_words)
 
@@ -86,9 +77,9 @@ def run_test(russian_words, english_translations):
         user_answer = input(
             f"Русское слово: '{rus_word}'. Ваш перевод: ").strip()
 
-        if not user_answer:  # User skips the word
+        if not user_answer:
             print(f"Пропущено. Правильный ответ был: '{correct_translation}'")
-            print("-" * 30)  # Increased separator length
+            print("-" * 30)
             continue
 
         user_answer_cleaned = user_answer.lower()
@@ -99,13 +90,12 @@ def run_test(russian_words, english_translations):
             correct_answers_count += 1
         else:
             print(f"Неверно. Правильный ответ: '{correct_translation}'")
-        print("-" * 30)  # Increased separator length
+        print("-" * 30)
 
     return correct_answers_count, total_questions_count
 
 
 def display_results(correct_answers_count, total_questions_count):
-    # Displays the test results and grade.
     print("\n--- Тест завершен ---")
     print(f"Всего вопросов: {total_questions_count}")
     print(f"Правильных ответов: {correct_answers_count}")
@@ -123,11 +113,11 @@ def display_results(correct_answers_count, total_questions_count):
         elif percentage >= 60:
             grade = 3
             comment = "Удовлетворительно."
-        elif percentage >= 40:  # Adjusted threshold for grade 2
+        elif percentage >= 40:
             grade = 2
             comment = "Неудовлетворительно, нужно подучить."
         else:
-            grade = 1  # Or consider 2 as the lowest pass/fail grade
+            grade = 1
             comment = "Очень плохо, срочно учить слова!"
         print(f"Ваша оценка: {grade} ({comment})")
     else:

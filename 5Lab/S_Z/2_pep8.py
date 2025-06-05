@@ -43,10 +43,8 @@ def task_2_pizzeria_orders():
                       "Ожидается целое число.")
                 continue
 
-            # Название пиццы может состоять из нескольких слов
-            # Re-join all parts except the first (customer) and last (quantity)
             pizza_name_parts = order_input[1:-1]
-            if not pizza_name_parts:  # Check if parts for pizza name exist
+            if not pizza_name_parts:
                 print(f"Не указано название пиццы в заказе {i + 1}.")
                 continue
             pizza_name = " ".join(pizza_name_parts)
@@ -56,7 +54,7 @@ def task_2_pizzeria_orders():
 
             orders[customer][pizza_name] = \
                 orders[customer].get(pizza_name, 0) + quantity
-            break  # Valid order processed, exit while loop for current order
+            break
 
     if not orders:
         print("Нет данных для вывода (возможно, все вводы были некорректны).")

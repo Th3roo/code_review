@@ -33,11 +33,6 @@ def input_pizza_orders(num_orders):
             if len(order_parts) != 3:
                 print("Некорректный формат. Ожидается: "
                       "Покупатель НазваниеПиццы Количество (3 слова).")
-                # Assumption: Pizza name is a single word.
-                # If pizza names can have spaces, input parsing needs to be more complex.
-                # e.g., customer = order_parts[0], quantity_str = order_parts[-1],
-                # pizza = " ".join(order_parts[1:-1])
-                # And then validate if pizza string is non-empty.
                 continue
 
             customer, pizza, quantity_str = order_parts
@@ -51,7 +46,7 @@ def input_pizza_orders(num_orders):
                 continue
 
             orders[customer][pizza] += quantity
-            break  # Valid order input, move to the next order
+            break
     return orders
 
 
@@ -64,11 +59,10 @@ def print_customer_orders(orders_data):
     print("\nДетализированные заказы по клиентам:")
     for customer in sorted(orders_data.keys()):
         print(f"{customer}:")
-        # Sort pizzas by name for each customer before printing
         sorted_pizzas = sorted(orders_data[customer].items())
         for pizza, quantity in sorted_pizzas:
-            print(f"  {pizza}: {quantity}")  # Indent pizza details
-        print()  # Add a blank line between customers for readability
+            print(f"  {pizza}: {quantity}")
+        print()
 
 
 def main():

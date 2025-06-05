@@ -167,8 +167,6 @@ def genealogy_tree():
             else:
                 print("Введите два имени через пробел (ребенок родитель).")
 
-    # Check for cycles and multiple roots (optional, but good for robustness)
-    # For simplicity, current version assumes valid tree structure input beyond pairs
 
     def compute_height(person):
         if person not in heights:
@@ -184,34 +182,27 @@ def genealogy_tree():
                 heights[person] = compute_height(tree[person]) + 1
         return heights[person]
 
-    # Find all unique people involved to compute heights for everyone
-    # This was: people = set(tree.keys()).union(tree.values())
-    # Now using all_people collected during input
 
     sorted_people = sorted(list(all_people))
 
-    # Compute heights for all people, handling potential errors
     final_heights = {}
     for person in sorted_people:
         try:
             final_heights[person] = compute_height(person)
-        except ValueError as e:  # Catch cycles
-            print(e)  # Print cycle error
-            # Decide how to handle; maybe skip printing this person or mark with error
+        except ValueError as e:
+            print(e)
             final_heights[person] = "Ошибка (цикл)"
-        except KeyError as e:  # Catch missing parent if tree structure is broken
+        except KeyError as e:
             print(
                 f"Ошибка: Родитель для {e} не найден. Проверьте структуру дерева."
             )
             final_heights[person] = "Ошибка (нет родителя)"
 
     for person in sorted_people:
-        # Only print if height computation was successful (or handle error display)
         if isinstance(final_heights.get(person), int):
             print(f"{person} {final_heights[person]}")
-        elif final_heights.get(person):  # If there's an error string
+        elif final_heights.get(person):
             print(f"{person} {final_heights[person]}")
-        # else: person might not be in final_heights if compute_height was never called due to structure issues
 
 
 def translation_test():
@@ -284,7 +275,6 @@ def main():
         genealogy_tree()
     elif choice == 5:
         translation_test()
-    # No else needed due to input validation
 
 
 if __name__ == "__main__":
