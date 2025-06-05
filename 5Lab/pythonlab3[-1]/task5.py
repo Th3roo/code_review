@@ -1,21 +1,21 @@
 rus_file = 'pythonlab3\\russian_words.txt'
 eng_file = 'pythonlab3\\english_words.txt'
 
-
-with open(rus_file, 'r', encoding='utf-8') as rf, open(eng_file, 'r', encoding='utf-8') as ef:
+with open(rus_file, 'r', encoding='utf-8') as rf, open(eng_file,
+                                                       'r',
+                                                       encoding='utf-8') as ef:
     russian_words = rf.readlines()
     english_words = ef.readlines()
-
 
 if len(russian_words) != len(english_words):
     raise ValueError("Количество строк в обоих файлах должно совпадать.")
 
-
-word_pairs = list(zip(map(str.strip, russian_words), map(str.strip, english_words)))
-
+word_pairs = list(
+    zip(map(str.strip, russian_words), map(str.strip, english_words)))
 
 correct_answers = 0
 total_questions = len(word_pairs)
+
 
 def conduct_test():
     global correct_answers
@@ -44,5 +44,7 @@ elif score >= 50:
 else:
     grade = "Неудовлетворительно"
 
-print(f"\nТест завершен. Вы ответили правильно на {correct_answers} из {total_questions} вопросов.")
+print(
+    f"\nТест завершен. Вы ответили правильно на {correct_answers} из {total_questions} вопросов."
+)
 print(f"Оценка: {grade} ({score:.2f}%)")

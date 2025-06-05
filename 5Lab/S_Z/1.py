@@ -1,5 +1,6 @@
 # Задача 1: Страны и города
 
+
 def task_1_countries_and_cities():
     """
     Решение задачи 1: Страны и города.
@@ -44,6 +45,7 @@ def task_1_countries_and_cities():
                   f"{country_city_map[city_to_find]}.")
         else:
             print(f"По городу {city_to_find} данных нет.")
+
 
 if __name__ == '__main__':
     print("--- Задача 1: Страны и города ---")

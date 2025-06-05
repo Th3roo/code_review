@@ -1,5 +1,6 @@
 # Задача 4: Высоты в генеалогическом древе
 
+
 def get_height_recursive(person, parent_map, heights_cache):
     """
     Рекурсивная функция для определения высоты элемента дерева с кешированием.
@@ -11,9 +12,9 @@ def get_height_recursive(person, parent_map, heights_cache):
             parent = parent_map[person]
             # Рекурсивный вызов для родителя
             heights_cache[person] = get_height_recursive(
-                parent, parent_map, heights_cache
-            ) + 1
+                parent, parent_map, heights_cache) + 1
     return heights_cache[person]
+
 
 def task_4_family_tree_heights():
     """
@@ -36,8 +37,7 @@ def task_4_family_tree_heights():
 
     if n_people == 1:
         name_of_single_person = input(
-            "Введите имя единственного человека (родоначальника): "
-        ).strip()
+            "Введите имя единственного человека (родоначальника): ").strip()
         if name_of_single_person:
             print("\n“Высота” каждого члена семьи:")
             print(f"{name_of_single_person} 0")
@@ -55,11 +55,15 @@ def task_4_family_tree_heights():
                 continue
             child, parent = pair_input[0], pair_input[1]
             if child == parent:
-                print(f"Ошибка в паре {i+1}: человек не может быть родителем сам себе ({child}).")
+                print(
+                    f"Ошибка в паре {i+1}: человек не может быть родителем сам себе ({child})."
+                )
                 continue
             if child in parent_map:
-                print(f"Ошибка: у потомка {child} уже указан родитель {parent_map[child]}. "
-                      f"Новая попытка указать родителя: {parent}. Используем первого.")
+                print(
+                    f"Ошибка: у потомка {child} уже указан родитель {parent_map[child]}. "
+                    f"Новая попытка указать родителя: {parent}. Используем первого."
+                )
                 continue
 
             parent_map[child] = parent
@@ -72,10 +76,9 @@ def task_4_family_tree_heights():
         print("Не было введено корректных данных о связях, "
               "невозможно построить дерево.")
         return
-    if not parent_map and n_people > 1 : # Если нет связей, но людей > 1 (все пары некорректны)
+    if not parent_map and n_people > 1:  # Если нет связей, но людей > 1 (все пары некорректны)
         print("Не удалось установить ни одной связи между людьми.")
         return
-
 
     children_with_parents = set(parent_map.keys())
     roots = all_people - children_with_parents
@@ -85,28 +88,30 @@ def task_4_family_tree_heights():
               "(возможно, все являются чьими-то потомками, образуя цикл, "
               "или все N-1 связей были некорректны).")
         return
-    if len(roots) > 1 and n_people > 1: # Для n_people=1 roots может быть пустым, если имя не ввели
+    if len(
+            roots
+    ) > 1 and n_people > 1:  # Для n_people=1 roots может быть пустым, если имя не ввели
         print(f"Ошибка в структуре дерева: найдено несколько "
               f"родоначальников: {', '.join(sorted(list(roots)))}. "
               "Ожидается один.")
         return
 
     heights = {}
-    for person in sorted(list(all_people)): # Сортируем для консистентности
+    for person in sorted(list(all_people)):  # Сортируем для консистентности
         get_height_recursive(person, parent_map, heights)
 
     if not heights and all_people:
         print("Не удалось рассчитать высоты для людей.")
         return
-    if not all_people and n_people > 1: # Если после ввода пар множество людей пусто
+    if not all_people and n_people > 1:  # Если после ввода пар множество людей пусто
         print("Нет данных о людях для расчета высот.")
         return
-
 
     print("\n“Высота” каждого члена семьи:")
     # Выводим в лексикографическом порядке имен
     for person_name in sorted(heights.keys()):
         print(f"{person_name} {heights[person_name]}")
+
 
 if __name__ == '__main__':
     print("--- Задача 4: Высоты в генеалогическом древе ---")
