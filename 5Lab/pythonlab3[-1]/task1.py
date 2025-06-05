@@ -1,4 +1,3 @@
-
 k = int(input("Кол-во стран: "))
 
 countries = {}
@@ -9,11 +8,13 @@ for i in range(k):
     cities = data[1:]
     countries[country] = cities
 
+
 def find_country(city):
     for country, cities in countries.items():
         if city in cities:
             return country
     return None
+
 
 # Ввод и проверка трех городов
 for i in range(3):

@@ -4,6 +4,7 @@ def calculate_heights(tree, root, heights, current_height):
     for child in tree.get(root, []):
         calculate_heights(tree, child, heights, current_height + 1)
 
+
 N = int(input("Введите количество человек: "))
 relationships = {}
 all_people = set()

@@ -17,6 +17,7 @@ def locate_cities():
         else:
             print(f"По городу {city} данных нет.")
 
+
 # Задание 2
 def pizza_orders():
     n = int(input("Введите кол-во заказов: "))
@@ -37,6 +38,7 @@ def pizza_orders():
         for pizza, amount in orders[buyer].items():
             print(f"  {pizza}: {amount}")
 
+
 # Задание 3
 def guess_the_number():
     n = int(input("Введите максимальное число: "))
@@ -45,7 +47,9 @@ def guess_the_number():
     while True:
         guess = input("Нужное число есть среди вот этих чисел: ")
         if guess == "Помогите!":
-            print(f"Иван мог загадать следующие числа: {' '.join(map(str, sorted(possible_numbers)))}")
+            print(
+                f"Иван мог загадать следующие числа: {' '.join(map(str, sorted(possible_numbers)))}"
+            )
             break
         guess_set = set(map(int, guess.split()))
         response = input("Ответ Ивана: ")
@@ -53,6 +57,7 @@ def guess_the_number():
             possible_numbers &= guess_set
         else:
             possible_numbers -= guess_set
+
 
 # Задание 4
 def genealogy_tree():
@@ -66,7 +71,8 @@ def genealogy_tree():
 
     def compute_height(person):
         if person not in heights:
-            heights[person] = compute_height(tree[person]) + 1 if person in tree else 0
+            heights[person] = compute_height(
+                tree[person]) + 1 if person in tree else 0
         return heights[person]
 
     people = set(tree.keys()).union(tree.values())
@@ -74,9 +80,11 @@ def genealogy_tree():
         compute_height(person)
         print(f"{person} {heights[person]}")
 
+
 # Задание 5
 def translation_test():
-    with open("russian.txt", "r", encoding="utf-8") as rus_file, open("english.txt", "r", encoding="utf-8") as eng_file:
+    with open("russian.txt", "r", encoding="utf-8") as rus_file, open(
+            "english.txt", "r", encoding="utf-8") as eng_file:
         rus_words = rus_file.readlines()
         eng_words = eng_file.readlines()
 
@@ -92,6 +100,7 @@ def translation_test():
 
     total = len(rus_words)
     print(f"Оценка: {correct_answers}/{total}")
+
 
 # Основная функция
 def main():
@@ -115,6 +124,7 @@ def main():
         translation_test()
     else:
         print("Неверный выбор.")
+
 
 # Запуск программы
 if __name__ == "__main__":

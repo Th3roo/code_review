@@ -1,5 +1,6 @@
 # Задача 2: Заказы в пиццерии
 
+
 def task_2_pizzeria_orders():
     """
     Решение задачи 2: Заказы в пиццерии.
@@ -68,6 +69,7 @@ def task_2_pizzeria_orders():
         sorted_pizzas = sorted(orders[customer].keys())
         for pizza in sorted_pizzas:
             print(f"  {pizza}: {orders[customer][pizza]}")
+
 
 if __name__ == '__main__':
     print("--- Задача 2: Заказы в пиццерии ---")
