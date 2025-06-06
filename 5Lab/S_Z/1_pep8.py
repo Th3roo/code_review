@@ -1,4 +1,24 @@
+"""
+Manages a database of countries and cities and allows querying city locations.
+
+This script prompts the user to input a number of countries, followed by
+the names of cities within each country. It then allows the user to query
+for three specific cities to find out which country they belong to.
+Input validation is performed at each step.
+"""
+
+
 def task_1_countries_and_cities():
+    """
+    Collects country and city data from the user and performs lookups.
+
+    The function first asks for the number of countries. If this number is
+    positive, it then prompts for each country and its associated cities.
+    Finally, it asks the user to input three city names and prints the
+    country each city belongs to, or indicates if the city is not found.
+    Handles various input errors such as non-integer inputs, empty inputs,
+    and incorrect formatting for country/city data.
+    """
     while True:
         try:
             k = int(input("Кол-во стран: "))

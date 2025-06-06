@@ -1,4 +1,24 @@
+"""
+A collection of interactive programs.
+
+This module provides a menu-driven interface to access various interactive
+programs, including:
+- City locator: Finds the country of a city based on user input.
+- Pizza order tracker: Manages pizza orders for multiple customers.
+- Number guessing game: Allows the user to play a number guessing game.
+- Genealogy tree builder: Calculates the height of individuals in a family tree.
+- Translation test: Tests the user's knowledge of Russian-English word pairs.
+"""
+
+
 def locate_cities():
+    """
+    Locates the country of a given city based on user-provided data.
+
+    The user first inputs a number of countries, followed by the country name
+    and a list of cities in that country. Then, the user can input city names
+    to find out their respective countries.
+    """
     while True:
         try:
             k = int(input("Кол-во стран: "))
@@ -36,6 +56,13 @@ def locate_cities():
 
 
 def pizza_orders():
+    """
+    Manages pizza orders for multiple customers.
+
+    The user inputs the number of orders, and for each order, provides the
+    customer's name, pizza name, and quantity. The program then prints
+    a summary of all orders, grouped by customer and sorted alphabetically.
+    """
     while True:
         try:
             n = int(input("Введите кол-во заказов: "))
@@ -82,6 +109,14 @@ def pizza_orders():
 
 
 def guess_the_number():
+    """
+    Plays a number guessing game with the user.
+
+    The user first specifies a maximum number. The program then tries to guess
+    a number chosen by the user (conceptually) by asking if the number is in
+    a presented set. The user responds 'Да' (Yes) or 'Нет' (No).
+    The program continues until it identifies the number or the user asks for help.
+    """
     while True:
         try:
             n = int(input("Введите максимальное число: "))
@@ -136,6 +171,15 @@ def guess_the_number():
 
 
 def genealogy_tree():
+    """
+    Calculates the "height" of individuals in a genealogy tree.
+
+    The user inputs the number of people and then pairs of child-parent
+    relationships. The program then calculates and prints the height of each
+    person in the tree, where height is defined as the distance from the
+     furthest ancestor (root of their part of the tree).
+    Handles cases of cycles or missing parents in the input data.
+    """
     while True:
         try:
             n = int(input("Введите количество человек: "))
@@ -169,6 +213,19 @@ def genealogy_tree():
 
 
     def compute_height(person):
+        """
+        Recursively computes the height of a person in the genealogy tree.
+
+        Args:
+            person (str): The name of the person.
+
+        Returns:
+            int: The height of the person in the tree.
+                 0 for a root (no parent in the provided data).
+
+        Raises:
+            ValueError: If a cycle is detected in the parent chain.
+        """
         if person not in heights:
             if person not in tree:  # This person is a root
                 heights[person] = 0
@@ -206,6 +263,14 @@ def genealogy_tree():
 
 
 def translation_test():
+    """
+    Tests the user's knowledge of Russian-to-English word translations.
+
+    Reads word pairs from "russian.txt" and "english.txt".
+    It then prompts the user to translate Russian words and provides feedback,
+    finally giving a score based on the number of correct answers.
+    Handles file errors and mismatches in word counts between the files.
+    """
     try:
         with open("russian.txt", "r", encoding="utf-8") as rus_file, open(
                 "english.txt", "r", encoding="utf-8") as eng_file:
@@ -247,6 +312,9 @@ def translation_test():
 
 
 def main():
+    """
+    Presents a menu to the user to choose and run one of the available programs.
+    """
     print("Выберите задание:")
     print("1 - Поиск городов по странам")
     print("2 - Учет заказов пиццы")

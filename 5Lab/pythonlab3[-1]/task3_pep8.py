@@ -1,5 +1,25 @@
+"""
+Implements the "Guess the Number" game logic.
+
+This script facilitates a game where one person (Ivan, conceptually) thinks
+of a number up to a maximum N, and another person (Sergey, the user)
+tries to guess it by providing sets of numbers and receiving 'Да' (Yes) or
+'Нет' (No) answers from Ivan. The script helps Sergey narrow down the
+possibilities until he asks for help or the possibilities are exhausted.
+"""
+
+
 def get_max_number():
-    """Gets a positive integer for the maximum possible number."""
+    """
+    Gets a positive integer for the maximum possible number (N) from the user.
+
+    Continuously prompts until a positive integer is entered. Handles
+    ValueError for non-integer inputs and prompts again if a non-positive
+    number is entered.
+
+    Returns:
+        int: The positive maximum number N.
+    """
     while True:
         try:
             n_val = int(input("Введите максимальное число (N): "))
@@ -12,7 +32,19 @@ def get_max_number():
 
 
 def get_sergeys_guess(max_n):
-    """Gets Sergey's guess as a set of numbers, or 'Помогите!'."""
+    """
+    Gets Sergey's (user's) guess: a set of numbers or the command 'Помогите!'.
+
+    Prompts the user to input space-separated numbers or 'Помогите!'.
+    Validates that numbers are within the range [1, max_n].
+
+    Args:
+        max_n (int): The maximum possible number in the game, for validation.
+
+    Returns:
+        set or str: A set of integers representing Sergey's guessed numbers,
+                    or the string "помогите!" if entered by the user.
+    """
     while True:
         guess_input_str = input(
             "Нужное число есть среди вот этих чисел (или 'Помогите!'): "
@@ -50,7 +82,14 @@ def get_sergeys_guess(max_n):
 
 
 def get_ivan_answer():
-    """Gets Ivan's answer ('Да' or 'Нет')."""
+    """
+    Gets Ivan's (conceptual other player's) answer ('Да' or 'Нет').
+
+    Continuously prompts until 'да' or 'нет' (case-insensitive) is entered.
+
+    Returns:
+        str: Ivan's answer, either "да" or "нет".
+    """
     while True:
         answer_str = input("Ответ Ивана ('Да'/'Нет'): ").strip().lower()
         if answer_str in ["да", "нет"]:
@@ -60,7 +99,15 @@ def get_ivan_answer():
 
 
 def play_guess_the_number():
-    """Main logic for the 'Guess the Number' game."""
+    """
+    Manages the main logic for the 'Guess the Number' game.
+
+    Initializes the set of possible numbers based on user input N.
+    Enters a loop where it gets Sergey's guess and Ivan's answer,
+    updating the set of possible numbers accordingly.
+    The loop breaks when Sergey types 'Помогите!' or if no possible numbers remain.
+    Finally, prints the list of possible numbers Ivan could have thought of.
+    """
     max_n = get_max_number()
     possible_numbers = set(range(1, max_n + 1))
 
@@ -95,6 +142,10 @@ def play_guess_the_number():
 
 
 def main():
+    """
+    Main function to start the 'Guess the Number' game.
+    Prints a welcome message and calls the core game logic function.
+    """
     print("--- Игра 'Угадай число' ---")
     play_guess_the_number()
 

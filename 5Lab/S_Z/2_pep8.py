@@ -1,4 +1,28 @@
+"""
+Manages pizza orders for a pizzeria.
+
+This script prompts the user for the number of orders, then for the details
+of each order (customer name, pizza name, quantity). It stores this
+information and then prints a summary of all orders, grouped by customer
+and sorted alphabetically by customer name and then by pizza name.
+Input validation is performed at each step.
+"""
+
+
 def task_2_pizzeria_orders():
+    """
+    Collects pizza order data from the user and prints a summary.
+
+    The function first asks for the total number of orders. If this number is
+    positive, it then prompts for each order's details: customer name,
+    pizza name (which can contain spaces), and quantity.
+    It aggregates orders for the same customer and pizza.
+    Finally, it prints a list of all customers in alphabetical order,
+    and for each customer, their ordered pizzas (also in alphabetical order)
+    along with the total quantity for each pizza.
+    Handles various input errors like non-integer inputs for counts,
+    negative or zero quantities, and incorrectly formatted order strings.
+    """
     while True:
         try:
             num_orders = int(input("Введите кол-во заказов: "))

@@ -1,4 +1,31 @@
+"""
+Implements a number guessing game helper.
+
+This script helps determine a number that "Ivan" has thought of, up to a
+user-defined maximum. "Sergey" (the user of this script) inputs sets of
+numbers, and "Ivan" (another person, conceptually) responds whether his
+chosen number is within that set ('Да' - Yes) or not ('Нет' - No).
+The script narrows down the possibilities until Sergey types 'Помогите!'
+(Help!), at which point it lists all remaining possible numbers.
+Input validation is performed for user inputs.
+"""
+
+
 def task_3_guess_the_number():
+    """
+    Interactively helps a user determine a number based on yes/no questions.
+
+    The function first prompts for the maximum possible number (N).
+    Then, it enters a loop where the user (Sergey) inputs a set of numbers
+    he guesses might contain Ivan's secret number. The user also inputs
+    Ivan's response ('Да' or 'Нет').
+    The set of possible numbers is updated based on Ivan's answers.
+    The loop continues until the user types 'Помогите!', at which point
+    the script prints all numbers that could still be Ivan's secret number,
+    sorted in ascending order.
+    Handles various input errors, such as non-integer inputs, empty inputs,
+    and invalid responses from Ivan.
+    """
     while True:
         try:
             n_max = int(input("Введите максимальное число (N): "))

@@ -1,4 +1,36 @@
+"""
+Calculates and displays the "height" of individuals in a family tree.
+
+The height of a person is defined as the number of generations they are
+removed from the furthest known ancestor (a root of the tree).
+The script prompts the user for the number of people and then for
+child-parent relationships. It then calculates and prints the height for each
+person in alphabetical order. It includes error handling for cycles and
+other structural issues in the provided family tree data.
+"""
+
+
 def get_height_recursive(person, parent_map, heights_cache):
+    """
+    Recursively calculates the height of a person in the family tree.
+
+    The height is defined as the distance from a root of the tree.
+    This function uses memoization (heights_cache) to store and retrieve
+    already calculated heights and to detect cycles.
+
+    Args:
+        person (str): The name of the person whose height is to be calculated.
+        parent_map (dict): A dictionary mapping each child to their parent.
+        heights_cache (dict): A dictionary used for memoization and cycle detection.
+                              Stores calculated heights. A value of -1 indicates
+                              the person is currently in the recursion stack (for cycle detection).
+
+    Returns:
+        int: The calculated height of the person.
+
+    Raises:
+        ValueError: If a cycle is detected in the ancestry chain.
+    """
     if person not in heights_cache:
         if person not in parent_map:
             heights_cache[person] = 0
@@ -18,6 +50,16 @@ def get_height_recursive(person, parent_map, heights_cache):
 
 
 def task_4_family_tree_heights():
+    """
+    Manages the user interaction for building a family tree and calculating heights.
+
+    Prompts the user for the number of people and then for child-parent pairs.
+    It then uses `get_height_recursive` to calculate the height for each person
+    (number of generations from the furthest ancestor).
+    Finally, it prints the names of all individuals along with their calculated
+    heights, sorted alphabetically by name. Handles various input errors,
+    detects cycles, and manages cases with incomplete or problematic tree structures.
+    """
     while True:
         try:
             n_people = int(input("Введите количество человек: "))
