@@ -30,3 +30,46 @@
 *.exe
 *.out
 *.app
+
+# Python
+# Byte-code files
+*.pyc
+__pycache__/
+
+# Distribution / build outputs
+.Python
+build/
+dist/
+eggs/
+*.egg-info/
+.tox/
+
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Editors/IDE specific files
+.idea/
+.vscode/
+
+# Specific to Windows
+*.pyd
+*.exe
+
+# Specific to macOS
+.DS_Store
+
+# Test coverage
+.coverage
+.coverage.*
+
+# Log files
+*.log
+*.log.*
+
+# Database files (if any)
+# db.sqlite3
+
