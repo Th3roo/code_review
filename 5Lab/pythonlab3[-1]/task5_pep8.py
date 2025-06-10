@@ -1,7 +1,7 @@
 import os
 
 RUSSIAN_FILE_PATH = "russian_words.txt"
-ENGLISH_FILE_PATH = "english_words.txt"
+ENGLISH_FILE_PATH = "english_translation.txt"
 
 
 def load_word_pairs(rus_path, eng_path):
