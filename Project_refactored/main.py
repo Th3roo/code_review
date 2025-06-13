@@ -4,7 +4,21 @@ import internal.asset_loader as asset_loader
 import internal.ui as ui
 import internal.game_logic as game_logic
 
+"""
+This module is the main entry point for the game.
+It initializes pygame, loads assets, and manages the overall game flow,
+including displaying start/end screens and running the main game loop.
+"""
+
 def main():
+    """
+    Main function to run the game.
+
+    Initializes pygame and its mixer, sets up the game window,
+    loads assets (images and sounds), and then enters the main application loop.
+    This loop handles showing the start screen, running the game logic,
+    and showing the end screen, allowing the player to restart or quit.
+    """
     pygame.init()
     pygame.mixer.init()
 

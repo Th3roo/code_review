@@ -1,11 +1,30 @@
 import pygame
 from internal.sprites import Player, Mob, Bullet
-from internal.config import (SCREEN_WIDTH, SCREEN_HEIGHT, BLACK, PLAYER_LIVES_START, 
+from internal.config import (SCREEN_WIDTH, SCREEN_HEIGHT, BLACK, PLAYER_LIVES_START,
                     MOB_SPAWN_TIME_MS, FONT_NAME_DEFAULT, FONT_SIZE_MEDIUM)
 from internal.ui import draw_text
 
+"""
+This module contains the main game loop and related game logic.
+It handles event processing, sprite updates, collision detection,
+and rendering the game state to the screen.
+"""
+
 def game_loop(screen, clock, images, sounds):
-    """Основной игровой цикл."""
+    """
+    Runs the main game loop.
+
+    This function initializes the game state, including the player, mobs, and bullets.
+    It handles user input, updates game objects, checks for collisions,
+    and draws the game on the screen. The loop continues until the player quits
+    or loses all lives.
+
+    @param screen: The pygame.Surface object representing the game screen.
+    @param clock: The pygame.time.Clock object for managing game speed.
+    @param images: A dictionary of loaded game images.
+    @param sounds: A dictionary of loaded game sounds.
+    @return: The player's score if the game ends normally, or -1 if the player quits.
+    """
     
     pygame.mouse.set_visible(False)
     pygame.event.set_grab(True)
