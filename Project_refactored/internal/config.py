@@ -1,4 +1,6 @@
 import pygame
+import sys
+import os
 
 # Экран
 SCREEN_WIDTH = 400
@@ -14,7 +16,16 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 GRAY = (128, 128, 128)
 
-ASSET_BASE_PATH = 'Project_refactored/assets/'
+ASSET_BASE_PATH = 'assets/'
+
+# Проверяем, запущен ли скрипт из PyInstaller
+if getattr(sys, 'frozen', False):
+    # Если да, используем путь к временной директории, созданной PyInstaller
+    ASSET_BASE_PATH = os.path.join(sys._MEIPASS, 'assets') + os.sep
+else:
+    # Иначе, используем обычный относительный путь (для разработки)
+    ASSET_BASE_PATH = 'assets' + os.sep
+
 
 IMAGE_PATHS = {
     'background': ASSET_BASE_PATH + 'Background.png',
